@@ -157,6 +157,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
   - {fileID: 11400000, guid: e437fddb2710d0546a1bd4bd8698924d, type: 2}
   - {fileID: 11400000, guid: 7fea5e8f270ca5f4181b0e39c43054b5, type: 2}
+  - {fileID: 11400000, guid: 3905cd1c9bc1ce344b4bb1c5c598cc67, type: 2}
   m_JumpAscendingScriptableActions: []
   m_JumpDescendingScriptableActions: []
   m_PullScriptableActions:

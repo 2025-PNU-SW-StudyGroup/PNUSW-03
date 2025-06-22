@@ -30,6 +30,7 @@ public class SaveLoadSystem : ScriptableObject
         if (locationSO != null)
         {
             saveData._locationId = locationSO.Guid;
+            Debug.Log($"CachedLoadLocation에서 GUID 저장 = {locationSO.Guid}");
         }
 
         SaveDataToDisk();
@@ -65,7 +66,6 @@ public class SaveLoadSystem : ScriptableObject
 
     public void SetNewGameData()
     {
-        Debug.Log("set new game data");
         FileManager.WriteToFile(saveFilename, "");
         if (_pointStorage)
             _pointStorage.lastPointTaken = null;
