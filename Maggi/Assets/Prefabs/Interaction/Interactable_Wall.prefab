@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 8845399736921498153}
   - component: {fileID: 852873266168437515}
   - component: {fileID: 5639426860044329396}
-  m_Layer: 7
+  - component: {fileID: 9132640951914896066}
+  m_Layer: 8
   m_Name: Interactable_Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.40744862, y: 2.785696, z: 2.1307385}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -63,6 +64,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -116,10 +118,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5931431540102342318}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -172,3 +174,16 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
   - {fileID: 11400000, guid: ce28c71c3ec136c4ab3fc8bb642a1f4a, type: 2}
   - {fileID: 11400000, guid: aaa80a6bcb8d44f49a6c38c1684fdde2, type: 2}
+--- !u!114 &9132640951914896066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931431540102342318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMeshInChild: 0

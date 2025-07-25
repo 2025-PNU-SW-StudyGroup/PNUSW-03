@@ -5,17 +5,17 @@ using UnityEngine.Rendering.Universal;
 
 public class SettingsSystem : MonoBehaviour
 {
-    [SerializeField] private SettingsSO _currentSettings = default;
-    [SerializeField] private SaveLoadSystem _saveLoadSystem = default;
-    [SerializeField] private UniversalRenderPipelineAsset _urpAsset = default;
+    [SerializeField] private SettingsSO _currentSettings;
+    [SerializeField] private SaveLoadSystem _saveLoadSystem;
+    [SerializeField] private UniversalRenderPipelineAsset _urpAsset;
 
     [Header("Listening to")]
-    [SerializeField] private VoidEventChannelSO _saveSettingEvent = default;
+    [SerializeField] private VoidEventChannelSO _saveSettingEvent;
 
     [Header("Broadcasting on")]
-    [SerializeField] private FloatEventChannelSO _changeMasterVolumeEventChannel = default;
-    [SerializeField] private FloatEventChannelSO _changeMusicVolumeEventChannel = default;
-    [SerializeField] private FloatEventChannelSO _changeSfxVolumeEventChannel = default;
+    [SerializeField] private FloatEventChannelSO _changeMasterVolumeEventChannel;
+    [SerializeField] private FloatEventChannelSO _changeMusicVolumeEventChannel;
+    [SerializeField] private FloatEventChannelSO _changeSfxVolumeEventChannel;
 
     private void Awake()
     {
@@ -41,17 +41,20 @@ public class SettingsSystem : MonoBehaviour
 
     private void SetCurrentSettings()
     {
-        _changeMasterVolumeEventChannel.RaiseEvent(_currentSettings.MasterVolume);
-        _changeMusicVolumeEventChannel.RaiseEvent(_currentSettings.MusicVolume);
-        _changeSfxVolumeEventChannel.RaiseEvent(_currentSettings.SfxVolume);
+        // 소리가 Max치로 저장되는 오류 방지
+        _changeMasterVolumeEventChannel.RaiseEvent(Mathf.Clamp01(_currentSettings.MasterVolume));
+        _changeMusicVolumeEventChannel.RaiseEvent(Mathf.Clamp01(_currentSettings.MusicVolume));
+        _changeSfxVolumeEventChannel.RaiseEvent(Mathf.Clamp01(_currentSettings.SfxVolume));
+        
         Resolution currentResolution = Screen.currentResolution;
-        if (_currentSettings.ResolutionIndex < Screen.resolutions.Length)
-        {
-            currentResolution = Screen.resolutions[_currentSettings.ResolutionIndex];
-        }
+        
+        // if (_currentSettings.ResolutionIndex < Screen.resolutions.Length)
+        // {
+        //     currentResolution = Screen.resolutions[_currentSettings.ResolutionIndex];
+        // }
         Screen.SetResolution(currentResolution.width, currentResolution.height, _currentSettings.IsFullScreen);
-        _urpAsset.shadowDistance = _currentSettings.ShadowDistance;
-        _urpAsset.msaaSampleCount = _currentSettings.AntiAliasingIndex;
+        // _urpAsset.shadowDistance = _currentSettings.ShadowDistance;
+        // _urpAsset.msaaSampleCount = _currentSettings.AntiAliasingIndex;
     }
 
     private void SaveSettings()

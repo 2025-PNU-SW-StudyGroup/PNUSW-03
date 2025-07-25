@@ -157,7 +157,7 @@ public class SceneLoader : MonoBehaviour
 #endif
         }
 
-        // Unload °¡ ³¡³ª¸é ½ÇÇàµÇ¾ßÇÔ
+        // Unload ê°€ ëë‚˜ë©´ ì‹¤í–‰ë˜ì•¼í•¨
         LoadNewScene();
     }
 

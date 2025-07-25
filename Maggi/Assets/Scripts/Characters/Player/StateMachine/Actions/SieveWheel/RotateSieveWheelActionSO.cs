@@ -24,6 +24,6 @@ public class RotateSieveWheelAction : StateAction
     public override void OnUpdate()
     {
         _interactiveObject.transform.GetChild(0)
-            .Rotate(Vector3.forward * _player.movementInput.x * _originSO.RotationAngle * Time.deltaTime);
+            .Rotate(Vector3.forward * (_player.inputVector.x * _originSO.RotationAngle * Time.deltaTime));
     }
 }

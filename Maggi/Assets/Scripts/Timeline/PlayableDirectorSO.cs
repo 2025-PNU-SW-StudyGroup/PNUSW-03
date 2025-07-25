@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
 [CreateAssetMenu(fileName = "PlayableDirector", menuName = "Timeline/PlayableDirector")]
 public class PlayableDirectorSO : DescriptionBaseSO
 {
-    [SerializeField] private TimelineAsset _playable = default;
+    public PlayableDirector Director;
+    public PlayableDirector PreDirector;
 }

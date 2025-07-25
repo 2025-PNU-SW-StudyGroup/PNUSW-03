@@ -38,12 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -288,6 +288,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &232002393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,13 +366,12 @@ GameObject:
   - component: {fileID: 433517070}
   - component: {fileID: 433517069}
   m_Layer: 0
-  m_Name: "SettingsSystemManager - \uC624\uB514\uC624\uAC00 \uCD5C\uB300\uCE58\uB85C
-    \uBC14\uB00C\uB294 \uBC84\uADF8 \uC788\uC74C"
+  m_Name: SettingsSystemManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &433517069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,8 +572,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 30, y: 30}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 60, y: 60}
+  m_SizeDelta: {x: 300, y: 116.9667}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1474843476
 MonoBehaviour:
@@ -597,15 +597,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB85C\uB529\uC911"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4c290a7aa56c3844f853ab5b7cb8c866, type: 2}
-  m_sharedMaterial: {fileID: -1959468687303967168, guid: 4c290a7aa56c3844f853ab5b7cb8c866, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 9adf7516b2aad9941a94402922649cd0, type: 2}
+  m_sharedMaterial: {fileID: 5909011061062451915, guid: 9adf7516b2aad9941a94402922649cd0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294967269
+  m_fontColor: {r: 0.8980392, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -622,13 +622,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 91.55
-  m_fontSizeBase: 91.55
+  m_fontSize: 90
+  m_fontSizeBase: 90
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -644,7 +644,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1

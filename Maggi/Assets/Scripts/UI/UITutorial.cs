@@ -6,25 +6,23 @@ using UnityEngine.UI;
 public class UITutorial : MonoBehaviour
 {
     [SerializeField] private TutorialSO _tutorial;
-    [SerializeField] private float _duration;
+    [SerializeField] private float _duration = 0.8f;
 
     [Header("Listening to")]
-    [SerializeField] private FloatEventChannelSO _floatTutorial = default;
+    [SerializeField] private FloatEventChannelSO _floatTutorial;
 
     private void OnEnable()
     {
         _tutorial.Image = transform.GetChild(0).GetComponent<Image>();
-        _tutorial.Text = transform.GetChild(1).GetComponent<TextMeshProUGUI>();        
+        _tutorial.Tmp = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
-        _floatTutorial.OnEventRaised += UpdateFloatingUI;
+        _floatTutorial.OnEventRaised += SetAlphaFloatingUI;
     }
 
-    private void UpdateFloatingUI(float alpha)
+    private void SetAlphaFloatingUI(float alpha)
     {
-        // ÀÌ¹ÌÁö ¾ËÆÄ°ª Á¶Á¤
+        // ì•ŒíŒŒê°’ ì¡°ì •
         _tutorial.Image.DOFade(alpha, _duration);
-
-        // ÅØ½ºÆ® ¾ËÆÄ°ª Á¶Á¤
-        _tutorial.Text.DOFade(alpha, _duration);
+        _tutorial.Tmp.DOFade(alpha, _duration);
     }
 }

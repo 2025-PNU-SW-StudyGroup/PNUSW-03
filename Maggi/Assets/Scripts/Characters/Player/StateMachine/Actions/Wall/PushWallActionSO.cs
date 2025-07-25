@@ -26,13 +26,17 @@ public class PushWallAction : StateAction
 
     public override void OnStateEnter()
 	{
-		_player.movementVector = _transform.up * _originSO.pushForce + Vector3.up * _originSO.upForce;
-		_interactionManager.currentInteractionType = InteractionType.None;
-		_interactionManager.currentInteractiveObject = null;
+        _player.movementVector = _transform.up;
+        _player.movementVector = _player.movementVector.normalized * _originSO.pushForce + Vector3.up * _originSO.upForce;
 	}
 
 	public override void OnUpdate() 
-	{ 
-		
+	{
+        
 	}
+
+    public override void OnStateExit()
+    {
+        _interactionManager.InitCurrentInteraction();
+    }
 }

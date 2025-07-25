@@ -17,5 +17,5 @@ MonoBehaviour:
   speed: 1.3
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   turnSmoothTime: 10

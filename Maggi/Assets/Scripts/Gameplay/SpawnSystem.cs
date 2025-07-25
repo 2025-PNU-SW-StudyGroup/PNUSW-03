@@ -7,7 +7,7 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private Player _playerPrefab = default;
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
-    // [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel = default; /* TimelineBinder¿¡¼­ Listen to */
+    // [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel = default; /* TimelineBinderì—ì„œ Listen to */
     [SerializeField] private PointStorageSO _pointTaken = default;
     [SerializeField] private CameraSO _currentCamera = default;
 
@@ -47,7 +47,7 @@ public class SpawnSystem : MonoBehaviour
 
         int pointIndex = Array.FindIndex(_spawnPoints, element =>
             element.PointPath == _pointTaken.lastPointTaken);
-
+        
         if (pointIndex == -1)
         {
             Debug.LogWarning("The player tried to spawn in an Save Point that doesn't exist, returning the default one.");

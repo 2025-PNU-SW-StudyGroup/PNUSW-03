@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack : MonoBehaviour
@@ -10,6 +8,7 @@ public class Attack : MonoBehaviour
         {
             if (other.TryGetComponent(out Damagable damagableComp))
             {
+                Debug.Log(gameObject.name);
                 damagableComp.Die();
             }
         }

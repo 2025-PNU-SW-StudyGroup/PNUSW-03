@@ -27,9 +27,9 @@ public class PushGlobeAction : StateAction
     public override void OnStateEnter()
 	{
 		_player.movementVector = _transform.up * _originSO.pushForce + Vector3.up * _originSO.upForce;
-		_interactionManager.currentInteractionType = InteractionType.None;
-		_interactionManager.currentInteractiveObject = null;
-	}
+
+        _interactionManager.InitCurrentInteraction();
+    }
 
 	public override void OnUpdate() { }
 }

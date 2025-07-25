@@ -8,12 +8,13 @@ public class TutorialTrigger : MonoBehaviour
 {
     [SerializeField] private TutorialSO _tutorial;
     [SerializeField] private Sprite _sprite;
-    [SerializeField] private string _text;
+    [SerializeField][TextArea] private string _description = default;
+    [SerializeField] private string _playerTag = "Player";
 
     [Header("Broadcasting on")]
-    [SerializeField] private FloatEventChannelSO _floatTutorial = default;
+    [SerializeField] private FloatEventChannelSO _floatTutorial;
 
-    private Collider _collider = default;
+    private Collider _collider;
 
     private void Awake()
     {
@@ -22,18 +23,19 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(_playerTag))
         {
-            _tutorial.Image.sprite = _sprite;
-            _tutorial.Text.text = _text;
+            if (_sprite != null)
+                _tutorial.Image.sprite = _sprite;
+            _tutorial.Tmp.text = _description;
         } 
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(_playerTag))
         {
-            // collider¿Í playerÀÇ °Å¸®¿¡ ºñ·ÊÇØ floating imageÀÇ alpha °ªÀ» °Çµç´Ù
+            // colliderì™€ playerì˜ ê±°ë¦¬ì— ë¹„ë¡€í•´ floating imageì˜ alpha ê°’ì„ ê±´ë“ ë‹¤
             Vector3 center = transform.position;
             center.y = other.transform.position.y;
             float distance = Vector3.Distance(center, other.transform.position);

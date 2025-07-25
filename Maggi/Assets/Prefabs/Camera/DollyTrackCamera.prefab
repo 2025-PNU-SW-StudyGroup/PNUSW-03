@@ -222,9 +222,9 @@ MonoBehaviour:
   m_PathPosition: 0
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0, z: 0}
-  m_XDamping: 0
+  m_XDamping: 0.5
   m_YDamping: 0
-  m_ZDamping: 1
+  m_ZDamping: 0.5
   m_CameraUp: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -250,8 +250,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 2
+  m_VerticalDamping: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0

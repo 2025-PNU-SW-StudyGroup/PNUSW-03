@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 788599178414608935}
   - component: {fileID: 6045208349583231857}
   - component: {fileID: 5797145958767046721}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: chain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,6 +60,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

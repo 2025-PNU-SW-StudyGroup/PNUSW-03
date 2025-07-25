@@ -123,6 +123,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -158,6 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5950516388958434900}
   - component: {fileID: 4517496352894832215}
+  - component: {fileID: 224273543185588681}
   m_Layer: 0
   m_Name: generator
   m_TagString: Untagged
@@ -205,6 +207,38 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &224273543185588681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354137764192614145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8678ed1a597b342b0168580d41e40b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onComboEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 9ddb2d07260461249b5887053f939ece, type: 2}
+        m_TargetAssemblyTypeName: VoidEventChannelSO, Assembly-CSharp
+        m_MethodName: RaiseEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _comboCount: 3
+  _comboTime: 2
+  _lastComboTime: 0
+  _currentComboCount: 0
+  _onGeneratorActivated: {fileID: 0}
 --- !u!1 &7556062123025626704
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +370,10 @@ GameObject:
   - component: {fileID: 4386928149278862086}
   - component: {fileID: 2281845734176895315}
   - component: {fileID: 3959667651487447292}
-  m_Layer: 0
+  - component: {fileID: 747093517890816819}
+  - component: {fileID: 2037688147447056381}
+  - component: {fileID: 6390885923945171356}
+  m_Layer: 8
   m_Name: engine_body.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -377,6 +414,7 @@ SkinnedMeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -459,3 +497,76 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2631698, y: 0.9380017, z: 0.46657145}
   m_Center: {x: -1.0679023, y: 0.68387556, z: 0.69588935}
+--- !u!54 &747093517890816819
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067832380064105273}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &2037688147447056381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067832380064105273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5c21302ba89f84ea6d24215494ba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 3
+  m_IdleScriptableActions:
+  - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
+  - {fileID: 11400000, guid: e437fddb2710d0546a1bd4bd8698924d, type: 2}
+  m_WalkScriptableActions:
+  - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
+  - {fileID: 11400000, guid: e437fddb2710d0546a1bd4bd8698924d, type: 2}
+  m_JumpAscendingScriptableActions: []
+  m_JumpDescendingScriptableActions: []
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
+  - {fileID: 11400000, guid: 465aba97b25281d4bbe65e3a8d451451, type: 2}
+  - {fileID: 11400000, guid: 1ed06a678caf7d148ac667f23da3cf05, type: 2}
+  - {fileID: 11400000, guid: a715a37186713e54c95dfdc402654eac, type: 2}
+  m_PushScriptableActions:
+  - {fileID: 11400000, guid: 1254a36a4f8a0704a88b4702ccccedc4, type: 2}
+  - {fileID: 11400000, guid: 952a388b52af2044dad8c6ad21288d69, type: 2}
+  - {fileID: 11400000, guid: 8aa6a2dd48f78bf47979d320033651d2, type: 2}
+  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
+  - {fileID: 11400000, guid: ce28c71c3ec136c4ab3fc8bb642a1f4a, type: 2}
+  - {fileID: 11400000, guid: aaa80a6bcb8d44f49a6c38c1684fdde2, type: 2}
+--- !u!114 &6390885923945171356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9067832380064105273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMeshInChild: 0

@@ -6,14 +6,14 @@ using Moment = Maggi.StateMachine.StateAction.SpecificMoment;
 [CreateAssetMenu(fileName = "AnimatorParameterAction", menuName = "State Machines/Actions/Animator Parameter Action")]
 public class AnimatorParameterActionSO : StateActionSO
 {
-	public ParameterType parameterType = default;
-	public string parameterName = default;
+	public ParameterType parameterType;
+	public string parameterName;
 
-    public bool boolValue = default;
-    public int intValue = default;
-    public float floatValue = default;
+    public bool boolValue;
+    public int intValue;
+    public float floatValue;
 
-	public Moment whenToRun = default;
+	public Moment whenToRun;
 
     protected override StateAction CreateAction() => new AnimatorParameterAction(Animator.StringToHash(parameterName));
 

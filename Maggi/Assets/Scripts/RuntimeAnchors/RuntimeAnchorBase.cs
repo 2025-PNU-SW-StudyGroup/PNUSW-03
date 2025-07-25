@@ -13,7 +13,7 @@ public class RuntimeAnchorBase<T> : DescriptionBaseSO where T : UnityEngine.Obje
     [ReadOnly][SerializeField] private T _value;
     public T Value => _value;
 
-    // CameraManager.csÀÇ OnEnable¿¡¼­ value¸¦ ÃÊ±âÈ­ÇÑ´Ù
+    // CameraManager.csì˜ OnEnableì—ì„œ valueë¥¼ ì´ˆê¸°í™”í•œë‹¤
     public void Provide(T value)
     {
         if (value == null)

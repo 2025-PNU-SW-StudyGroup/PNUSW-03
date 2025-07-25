@@ -11,7 +11,14 @@ public class PullNormalActionSO : StateActionSO
 public class PullNormalAction : StateAction
 {
 	protected new PullNormalActionSO _originSO => (PullNormalActionSO)base.OriginSO;
-
+    private InteractionEventListener _interactionEventListener;
+    
+    
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _interactionEventListener = interactiveObject.GetComponent<InteractionEventListener>();
+    }
+    
 	public override void Awake(StateMachine stateMachine)
 	{
 	}
@@ -23,7 +30,14 @@ public class PullNormalAction : StateAction
 	
 	public override void OnStateEnter()
 	{
-		
+        if (_interactionEventListener != null && _interactionEventListener.enabled)
+        {
+            _interactionEventListener.OnInteract();
+        }
+        else
+        {
+            Debug.Log("Interaction Event Listener is null");
+        }
 	}
 	
 	public override void OnStateExit()

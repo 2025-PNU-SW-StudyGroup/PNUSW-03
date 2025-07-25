@@ -17,7 +17,7 @@ public class ReplaceObject : MonoBehaviour
             Vector3 position = _originalObject.transform.position;
             Quaternion rotation = _originalObject.transform.rotation;
 
-            Destroy(_originalObject);
+            _originalObject.SetActive(false);
 
             GameObject newObject = Instantiate(_targetPrefab, position, rotation);
             //newObject.transform.SetParent(_originalObject.transform.parent, false);

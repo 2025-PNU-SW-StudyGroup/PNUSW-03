@@ -65,12 +65,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 79942e3acb7ff224b9614ed35764ad76, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 79942e3acb7ff224b9614ed35764ad76, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 61e3991720b72d1419c096564ecfa9a8, type: 2}
     - target: {fileID: 919132149155446097, guid: 79942e3acb7ff224b9614ed35764ad76, type: 3}
       propertyPath: m_Name
       value: iron_door
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79942e3acb7ff224b9614ed35764ad76, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

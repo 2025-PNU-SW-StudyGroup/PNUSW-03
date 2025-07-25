@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,8 +17,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction PullCancelEvent = delegate { };
     public event UnityAction PushEvent = delegate { };
     public event UnityAction PushCancelEvent = delegate { };
-    public event UnityAction<Vector2> AimEvent = delegate { };
-    public event UnityAction<Vector2> AimCancelEvent = delegate { };
+    public event UnityAction<Vector2> AimArrowEvent = delegate { };
+    public event UnityAction<Vector2> AimMouseEvent = delegate { };
 
     // Menus
     public event UnityAction MenuPauseEvent = delegate { };
@@ -34,16 +35,24 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
             _gameInput = new GameInput();
 
             _gameInput.Gameplay.SetCallbacks(this);
+            _gameInput.Menus.SetCallbacks(this);
             _gameInput.Gameplay.Enable();
         }
     }
+
+    private void OnDisable()
+    {
+        DisableAllInput();
+    }
+
+    /* Menus Actions */
 
     public void OnMovement(InputAction.CallbackContext context)
     {
         MoveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
-    void GameInput.IGameplayActions.OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
             JumpEvent.Invoke();
@@ -51,13 +60,22 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
             JumpCancelEvent.Invoke();
     }
 
+    public void OnAimArrow(InputAction.CallbackContext context)
+    {
+        AimArrowEvent.Invoke(context.ReadValue<Vector2>());
+    }
+    
+    public void OnAimMouse(InputAction.CallbackContext context)
+    {
+        AimMouseEvent.Invoke(context.ReadValue<Vector2>());
+    }
+    
     public void OnRun(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
             RunEvent.Invoke();
         else if (context.phase == InputActionPhase.Canceled)
             RunCancelEvent.Invoke();
-
     }
 
     public void OnPull(InputAction.CallbackContext context)
@@ -81,14 +99,15 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         if (context.phase == InputActionPhase.Performed)
             MenuPauseEvent.Invoke();
     }
+    
+
+    /* Menus Actions */
 
     public void OnCancel(InputAction.CallbackContext context)
     {
-        Debug.Log("여긴 오나?");
         if (context.phase == InputActionPhase.Performed)
         {
             MenuCloseEvent.Invoke();
-            Debug.Log("메뉴 크로즈");
         }
     }
 
@@ -104,15 +123,15 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
             MoveSelectionEvent.Invoke();
     }
 
-    public void OnAim(InputAction.CallbackContext context)
-    {
-        AimEvent.Invoke(context.ReadValue<Vector2>());
-    }
-
     public void EnableGameplayInput()
     {
         _gameInput.Menus.Disable();
         _gameInput.Gameplay.Enable();
+    }
+
+    public void DisableGameplayInput()
+    {
+        _gameInput.Gameplay.Disable();
     }
 
     public void EnableMenuInput()
@@ -125,6 +144,11 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
         _gameInput.Gameplay.Disable();
         _gameInput.Menus.Disable();
+    }
+
+    public bool GetGameplayInput()
+    {
+        return _gameInput.Gameplay.enabled;
     }
 
     public bool LeftMouseDown() => Mouse.current.leftButton.isPressed;

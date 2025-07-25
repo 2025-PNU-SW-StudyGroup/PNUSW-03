@@ -21,8 +21,7 @@ public class PushHeavyAction : StateAction
 
     public override void OnStateExit()
     {
-        _interactionManager.currentInteractionType = InteractionType.None;
-        _interactionManager.currentInteractiveObject = null;
+        _interactionManager.InitCurrentInteraction();
     }
 
     public override void OnUpdate() { }

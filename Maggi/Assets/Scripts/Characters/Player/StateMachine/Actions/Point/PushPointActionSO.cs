@@ -31,11 +31,7 @@ public class PushPointAction : StateAction
 
     public override void OnStateExit()
     {
-        _interactionManager.currentInteractionType = InteractionType.None;
-        _interactionManager.currentInteractiveObject = null;
-
-        int count = 0;
-        while (_player.movementVector.y >= 0) { if (count++ > 10000) break; }
+        _interactionManager.InitCurrentInteraction();
     }
 
     public override void OnUpdate() { }

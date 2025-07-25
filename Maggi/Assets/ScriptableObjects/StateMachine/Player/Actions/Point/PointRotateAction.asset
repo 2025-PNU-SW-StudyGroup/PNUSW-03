@@ -16,4 +16,4 @@ MonoBehaviour:
   PointLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  rotationSpeed: 2
+  rotationSpeed: 3.5

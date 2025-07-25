@@ -6,23 +6,23 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [Header("SoundEmitters pool")]
-    [SerializeField] private SoundEmitterPoolSO _pool = default;
+    [SerializeField] private SoundEmitterPoolSO _pool;
     [SerializeField] private int _initialSize = 10;
 
     [Header("Listening on channels")]
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to play SFXs")]
-    [SerializeField] private AudioCueEventChannelSO _SFXEventChannel = default;
+    [SerializeField] private AudioCueEventChannelSO _SFXEventChannel;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to play Music")]
-    [SerializeField] private AudioCueEventChannelSO _musicEventChannel = default;
+    [SerializeField] private AudioCueEventChannelSO _musicEventChannel;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change SFXs volume")]
-    [SerializeField] private FloatEventChannelSO _SFXVolumeEventChannel = default;
+    [SerializeField] private FloatEventChannelSO _SFXVolumeEventChannel;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Music volume")]
-    [SerializeField] private FloatEventChannelSO _musicVolumeEventChannel = default;
+    [SerializeField] private FloatEventChannelSO _musicVolumeEventChannel;
     [Tooltip("The SoundManager listens to this event, fired by objects in any scene, to change Master volume")]
-    [SerializeField] private FloatEventChannelSO _masterVolumeEventChannel = default;
+    [SerializeField] private FloatEventChannelSO _masterVolumeEventChannel;
 
     [Header("Audio control")]
-    [SerializeField] private AudioMixer audioMixer = default;
+    [SerializeField] private AudioMixer audioMixer;
     [Range(0f, 1f)]
     [SerializeField] private float _masterVolume = 1f;
     [Range(0f, 1f)]
@@ -101,7 +101,6 @@ public class AudioManager : MonoBehaviour
         // We're assuming the range [0 to 1] becomes [-80dB to 0dB]
         // This doesn't allow values over 0dB
         float ret = (normalizedValue - 1f) * 80f;
-        Debug.Log($"normalized value = {normalizedValue}, return = {ret}");
         return ret;
     }
 
@@ -127,7 +126,7 @@ public class AudioManager : MonoBehaviour
         int nOfClips = clipsToPlay.Length;
         for (int i = 0; i < nOfClips; i++)
         {
-            soundEmitterArray[i] = _pool.Request(); // AvailableÇÑ ¾Ö¸¦ Stack¿¡¼­ °¡Á®¿Â´Ù
+            soundEmitterArray[i] = _pool.Request(); // Availableï¿½ï¿½ ï¿½Ö¸ï¿½ Stackï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½
             if (soundEmitterArray[i] != null)
             {
                 soundEmitterArray[i].PlayAudioClip(clipsToPlay[i], settings, audioCue.looping, position);
@@ -147,7 +146,7 @@ public class AudioManager : MonoBehaviour
         {
             for (int i = 0; i < soundEmitters.Length; i++)
             {
-                soundEmitters[i].Finish(); // ³²Àº clip ½Ã°£ ¸¸Å­ µ¹¸®°í clip Á¾·á ½ÃÅ´(loop ¸¦ false·Î ¼³Á¤)
+                soundEmitters[i].Finish(); // ï¿½ï¿½ï¿½ï¿½ clip ï¿½Ã°ï¿½ ï¿½ï¿½Å­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ clip ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å´(loop ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
                 soundEmitters[i].OnSoundFinishedPlaying += OnSoundEmitterFinishedPlaying;
             }
         }

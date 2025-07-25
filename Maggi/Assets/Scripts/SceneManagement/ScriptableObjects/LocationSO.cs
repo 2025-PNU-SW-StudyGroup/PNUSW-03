@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLocation", menuName = "Scene Data/Location")]
 public class LocationSO : GameSceneSO
 {
-    // ÃßÈÄ¿¡ language localizing À§ÇØ »ç¿ë
+    // ì¶”í›„ì— language localizing ìœ„í•´ ì‚¬ìš©
 }

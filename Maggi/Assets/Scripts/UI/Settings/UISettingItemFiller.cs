@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -17,7 +15,7 @@ public class UISettingItemFiller : MonoBehaviour
 
     public void FillSettingField(int paginationCount, int selectedPaginationIndex, string selectedOption_int)
     {
-        //_title.text = _fieldType.ToString();
+        // _title.text = _fieldType.ToString();
         _currentSelectedOption_Text.text = selectedOption_int.ToString();
 
         _buttonNext.interactable = (selectedPaginationIndex < paginationCount - 1);

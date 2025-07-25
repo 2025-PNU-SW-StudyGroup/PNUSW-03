@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d33590e44d5ec641ba72be6ea91fffe, type: 3}
   m_Name: IsClosed
   m_EditorClassIdentifier: 
-  distance: 2
+  distance: 3

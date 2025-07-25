@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotateYAxis : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed = 20.0f; // È¸Àü ¼Óµµ
+    [SerializeField] private float rotationSpeed = 20.0f; // íšŒì „ ì†ë„
     [SerializeField] private bool isRotate = false;
 
     private void Update()

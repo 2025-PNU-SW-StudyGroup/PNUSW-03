@@ -12,14 +12,14 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool jumpInput;
     [HideInInspector] public bool runInput;
 
-    private Vector2 _inputVector; // _inputVector.x : x movement, _inputVector.y : z movement
+    [HideInInspector] public Vector2 inputVector; // inputVector.x: x movement, inputVector.y: z movement
     private float _previousSpeed;
 
     public const float AIR_RESISTANCE = 5f;
     public const float RUN_SPEED_MULTIPLIER = 1.5f;
     public const float MAX_FALL_SPEED = -50f;
     public const float MAX_RISE_SPEED = 100f;
-    public const float GRAVITY_MULTIPLIER = 2f;
+    public const float GRAVITY_MULTIPLIER = 3f;
     public const float GRAVITY_COMEBACK_MULTIPLIER = 0.06f;
     public const float GRAVITY_DIVIDER = 0.6f;
 
@@ -113,10 +113,10 @@ public class Player : MonoBehaviour
          
         // inputVector를 위에서 정한 cameraForward / cameraRight 축에 매핑
         // x 입력 => cameraRight   방향 / y 입력 => cameraForward 방향
-        adjustedMovement = cameraRight * _inputVector.x + cameraForward * _inputVector.y;
+        adjustedMovement = cameraRight * inputVector.x + cameraForward * inputVector.y;
 
         // interpolate speed
-        targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
+        targetSpeed = Mathf.Clamp01(inputVector.magnitude);
         targetSpeed = Mathf.Lerp(_previousSpeed, targetSpeed, Time.deltaTime * 4.0f);
 
         movementInput = adjustedMovement * targetSpeed;
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
     private void OnMovement(Vector2 movement)
     {
-        _inputVector = movement;
+        inputVector = movement;
     }
 
     private void OnJumpInitiated()

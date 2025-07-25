@@ -16,8 +16,9 @@ MonoBehaviour:
   description: 
   sceneType: 1
   sceneReference:
-    m_AssetGUID: a7eb3f8da8f84c348b441c1c521a8cbc
+    m_AssetGUID: 6786b7cedf01fd341899e9ca598b656e
     m_SubObjectName: 
     m_SubObjectType: 
+    m_SubObjectGUID: 
     m_EditorAssetChanged: 0
   musicTrack: {fileID: 11400000, guid: 7f8969370d7ff2e4fb8ed76335944dcc, type: 2}

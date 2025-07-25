@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 200ae7631d0f1684aa38f41ac3005397, type: 3}
+  m_Name: OnChangeResolution
+  m_EditorClassIdentifier: 
+  _guid: 2ecfd426ad6e886438a8c2165485d35d
+  description: "Resolution \uBC14\uAFE8\uC744 \uB54C Pause UI \uD328\uB110\uB4E4
+    \uC7AC\uBC30\uC5F4\uD558\uB294 \uC774\uBCA4\uD2B8"

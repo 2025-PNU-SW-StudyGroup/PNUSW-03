@@ -15,6 +15,8 @@ public class PullLightAction : StateAction
 	private InteractionManager _interactionManager;
     private InteractiveObject _interactiveObject;
     private Collider _interactiveObjectCollider;
+    private Rigidbody _interactiveObjectRigidbody;
+    private Camera _mainCamera;
 
 	public override void Awake(StateMachine stateMachine)
 	{
@@ -31,8 +33,13 @@ public class PullLightAction : StateAction
 
     public override void OnStateEnter()
     {
-        _interactiveObjectCollider = _interactionManager.currentInteractiveObject.GetComponent<Collider>();
+        if (_mainCamera == null)
+            _mainCamera = Camera.main;
+        
+        _interactiveObjectCollider = _interactiveObject.GetComponent<Collider>();
         _interactiveObjectCollider.enabled = false;
+
+        _interactiveObjectRigidbody = _interactiveObject.GetComponent<Rigidbody>();
 
         // When Pulling Light Object, it needs to remove from list of Potential Interactions
         _interactionManager.OnTriggerChangeDetected(false, _interactionManager.currentInteractiveObject);
@@ -40,26 +47,48 @@ public class PullLightAction : StateAction
 
     public override void OnUpdate()
     {
-        // 플레이어 높이와 동일한 y 위치의 평면 생성
-        Plane plane = new Plane(Vector3.up, _player.transform.position);
+        // 1) 플레이어 높이 평면 (아래쪽으로만 교차)
+        Plane lowPlane  = new Plane(Vector3.up,    _player.transform.position);
+        // 2) 플레이어 머리 위 적당한 높이에 평면 추가 (위쪽으로만 교차)
+        float headY     = _player.transform.position.y + 10f; 
+        Plane highPlane = new Plane(Vector3.down,  new Vector3(0, headY, 0));
 
-        // 카메라에서 마우스 위치로의 Ray 생성
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        // Ray가 평면과 교차하는 지점 계산
-        if (plane.Raycast(ray, out float distance))
-        {
-            Vector3 mouseWorldPosition = ray.GetPoint(distance);
+        Vector3 mouseWorldPosition;
+        float   distance;
 
-            // 오브젝트 위치 및 방향 조정
-            Vector3 direction = (mouseWorldPosition - _player.transform.position).normalized;
-            _interactiveObject.transform.position = _player.transform.position + direction * 0.4f + Vector3.up * 0.2f;
-            _interactiveObject.transform.LookAt(mouseWorldPosition);
+        // 3) 아래→위 순서로 시도
+        if (lowPlane.Raycast(ray, out distance) && distance > 0f)
+        {
+            mouseWorldPosition = ray.GetPoint(distance);
         }
+        else if (highPlane.Raycast(ray, out distance) && distance > 0f)
+        {
+            mouseWorldPosition = ray.GetPoint(distance);
+        }
+        else
+        {
+            // 그래도 못 잡으면 적당한 거리(예: 5m)로 뽑아두기
+            mouseWorldPosition = ray.GetPoint(5f);
+        }
+
+        // 4) 결과 반영
+        Vector3 dir = (mouseWorldPosition - _player.transform.position).normalized;
+        _interactiveObject.transform.position = _player.transform.position
+            + dir * 0.4f
+            + Vector3.up * 0.2f;
+        _interactiveObject.transform.LookAt(mouseWorldPosition);
     }
+
 
     public override void OnStateExit()
     {
-        _interactiveObjectCollider.enabled = true;
+        if (_interactiveObjectCollider != null)
+            _interactiveObjectCollider.enabled = true;
+        if (_interactiveObjectRigidbody != null)
+        {
+            _interactiveObjectRigidbody.isKinematic = false;
+        }
     }
 }

@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 4777130779868430967}
   - component: {fileID: 8666269192515851860}
   - component: {fileID: 1722145286804099023}
-  m_Layer: 0
+  - component: {fileID: 8534848079490816913}
+  m_Layer: 8
   m_Name: Interactable_SieveWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,10 +47,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8024615725421662301}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -200,6 +201,19 @@ MonoBehaviour:
   m_PushScriptableActions:
   - {fileID: 11400000, guid: be6867f1af2ff8c409bf52a85d638619, type: 2}
   - {fileID: 11400000, guid: ab727bed7a34cab4090468a75db53bbe, type: 2}
+--- !u!114 &8534848079490816913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024615725421662301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMeshInChild: 1
 --- !u!1001 &8038933508777849948
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,6 +277,10 @@ PrefabInstance:
     - target: {fileID: 3964943498520907986, guid: 58169ac2440868d42a3b5f7a37e18c5f, type: 3}
       propertyPath: m_Name
       value: empty_can
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964943498520907986, guid: 58169ac2440868d42a3b5f7a37e18c5f, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3964943498520907986, guid: 58169ac2440868d42a3b5f7a37e18c5f, type: 3}
       propertyPath: m_TagString

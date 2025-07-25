@@ -30,10 +30,9 @@ public class IsBoundOfWallCondition : Condition
         if (Physics.Raycast(ray, out hit, 2.0f, _originSO.WallLayerMask))
             return true;
 
-
         // Out of Boundary
-        _interactionManager.currentInteractionType = InteractionType.None;
-        _interactionManager.currentInteractiveObject = null;
+        _interactionManager.InitCurrentInteraction();
+        
         return false;
     }
 }

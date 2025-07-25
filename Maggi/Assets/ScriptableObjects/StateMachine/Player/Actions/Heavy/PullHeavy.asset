@@ -16,4 +16,6 @@ MonoBehaviour:
   collisionLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  moveSpeed: 2.4
+  pullStep: 0.04
+  maxPullDistanceOffset: -0.5
+  lerpDuration: 3

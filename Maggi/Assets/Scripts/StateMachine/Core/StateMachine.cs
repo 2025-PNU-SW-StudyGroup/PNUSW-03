@@ -39,6 +39,14 @@ namespace Maggi.StateMachine
             _currentState.OnFixedUpdate();
         }
 
+        private void LateUpdate()
+        {
+            if (_currentState.TryGetTransition(out var transitionState))
+                Transition(transitionState);
+
+            _currentState.OnLateUpdate();
+        }
+
         private void Transition(State transitionState)
         {
             _currentState.OnStateExit();

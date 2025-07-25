@@ -29,7 +29,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: 3002
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -58,6 +58,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GrabbedScreenTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -100,6 +104,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
+    - _CastShadows: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -128,7 +133,9 @@ Material:
     - _Surface: 0
     - _TwiriStrength: 5
     - _WorkflowMode: 1
+    - _ZTest: 4
     - _ZWrite: 1
+    - _ZWriteControl: 0
     - _amount: 4.21
     - _fresnel: 9
     m_Colors:
@@ -136,6 +143,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _fresnel_color: {r: 0, g: 11.866319, b: 21.361254, a: 0}
+    - _fresnel_color: {r: 8.533349, g: 2.4206586, b: 0.6842781, a: 70.4}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

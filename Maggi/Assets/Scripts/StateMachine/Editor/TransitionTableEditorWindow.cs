@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Maggi.StateMachine.ScriptableObjects;
+using System.Linq;
 
 namespace Maggi.StateMachine.Editor
 {
@@ -65,25 +66,25 @@ namespace Maggi.StateMachine.Editor
 
 		private void OnLostFocus()
 		{
-			// uxmlÀÇ table-list´Â ListView·Î ¼±¾ğµÇ¾î ÀÖÀ½.
+			// uxmlì˜ table-listëŠ” ListViewë¡œ ì„ ì–¸ë˜ì–´ ìˆìŒ.
 			ListView listView = rootVisualElement.Q<ListView>(className: "table-list");
 			listView.onSelectionChange -= OnListSelectionChanged;
 		}
 
 		private void Update()
 		{
-			// Ã¢¿¡ Focus°¡ µÈ »óÅÂ¿¡¸¸ Refresh¸¦ ÁøÇà
+			// ì°½ì— Focusê°€ ëœ ìƒíƒœì—ë§Œ Refreshë¥¼ ì§„í–‰
 			if (!_doRefresh)
 				return;
 
-			// Refresh´Â ÇÑ ¹ø¸¸ ÁøÇàÇÑ´Ù. ÀÌ¸¦ À§ÇÑ doRefresh flag
+			// RefreshëŠ” í•œ ë²ˆë§Œ ì§„í–‰í•œë‹¤. ì´ë¥¼ ìœ„í•œ doRefresh flag
 			CreateListView();
 			_doRefresh = false;
 		}
 
 		private void CreateListView()
 		{
-			// assets¿¡ TransitionTableEditor AssetµéÀ» ¸ğµÎ ºÒ·¯¿È
+			// assetsì— TransitionTableEditor Assetë“¤ì„ ëª¨ë‘ ë¶ˆëŸ¬ì˜´
 			var assets = FindAssets();
 			ListView listView = rootVisualElement.Q<ListView>(className: "table-list");
 
@@ -91,7 +92,7 @@ namespace Maggi.StateMachine.Editor
 			listView.bindItem = null;
 
 			listView.itemsSource = assets;
-			listView.itemHeight = 16;
+			listView.fixedItemHeight = 16;
 			string labelClass = $"label-{(EditorGUIUtility.isProSkin ? "pro" : "personal")}";
 			listView.makeItem = () =>
 			{
@@ -102,8 +103,8 @@ namespace Maggi.StateMachine.Editor
 			listView.bindItem = (element, i) => ((Label)element).text = assets[i].name;
 			listView.selectionType = SelectionType.Single;
 
-			listView.onSelectionChange -= OnListSelectionChanged;
-			listView.onSelectionChange += OnListSelectionChanged;
+			listView.selectionChanged -= OnListSelectionChanged;
+			listView.selectionChanged += OnListSelectionChanged;
 
 			if (_transitionTableEditor && _transitionTableEditor.target)
 				listView.selectedIndex = System.Array.IndexOf(assets, _transitionTableEditor.target);
@@ -114,8 +115,8 @@ namespace Maggi.StateMachine.Editor
 			IMGUIContainer editor = rootVisualElement.Q<IMGUIContainer>(className: "table-editor");
 			editor.onGUIHandler = null;
 
-			List<object> list = (List<object>)enumerable;
-
+            List<object> list = enumerable.ToList();
+            
 			if (list.Count == 0)
 				return;
 

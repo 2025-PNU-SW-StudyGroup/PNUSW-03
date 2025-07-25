@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 5719604120148568598}
   - component: {fileID: 2626661789346029487}
   - component: {fileID: 6556393058761914815}
-  - component: {fileID: 6276029792556299296}
+  - component: {fileID: 5550346421096866057}
+  - component: {fileID: 1924102774032971270}
   m_Layer: 0
   m_Name: trigger_event_listener
   m_TagString: Untagged
@@ -75,9 +76,60 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.286766, y: 0.24398065, z: 1.6944122}
-  m_Center: {x: 1.3833199, y: 0.17199028, z: -0.077718735}
---- !u!114 &6276029792556299296
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!320 &5550346421096866057
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491086786369245201}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -5035991396810397099, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7544321306546441552, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -89283737854249498, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2790927587170471195, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6716982382069624621, guid: 6967ee0979308fd45a1ebf4b9540a1e2, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 4637195606109588105, guid: 6967ee0979308fd45a1ebf4b9540a1e2, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3075117083755321115, guid: 12ddd5717113ab94984705f6e62582fa, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7416219523753780335, guid: 12ddd5717113ab94984705f6e62582fa, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7223401729279095487, guid: 9e9b00a22dbf88a44953f1d2721c5891, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 6301779397623146887, guid: 9e9b00a22dbf88a44953f1d2721c5891, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 2723835946987131837, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1589150636649044991, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -5464374560668273510, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7196579794681775206, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 8240256514057059432, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8245641646670171937, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6595346358780719283, guid: fbc8a009a444ef049a93bfbe74df29d7, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
+--- !u!114 &1924102774032971270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,8 +138,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1491086786369245201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 243bbded8ad810148b5b991cfb33671e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f8073abd23e7314587ac79ef9e9c3bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeline: {fileID: 0}
-  _onStartTimeline: {fileID: 11400000, guid: f9e0a26d52c3e7e4aa6c085a41dea893, type: 2}
+  _tag: Player
+  eventType: 0
+  _timeline: {fileID: 11400000, guid: 9e9b00a22dbf88a44953f1d2721c5891, type: 2}
+  _currentPlayable: {fileID: 11400000, guid: 79a91c014d30311488b1fca3ed99cee4, type: 2}
+  _inputReader: {fileID: 11400000, guid: 58ecdbb71ef371c48bead51aaf8d0740, type: 2}
+  _stopedPlayer: 0

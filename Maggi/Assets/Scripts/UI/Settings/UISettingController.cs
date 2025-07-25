@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 [System.Serializable]
 public enum SettingFieldType
@@ -25,45 +23,56 @@ public enum SettingsType
 
 public class UISettingController : MonoBehaviour
 {
+    [SerializeField] private InputReader _inputReader;
+    
+    [Header("Setting UI")]
+    [SerializeField] private UIGenericButton _backButton;
+    
+    [Header("Setting")]
     [SerializeField] private UISettingsAudioComponent _audioComponent;
     [SerializeField] private UISettingsGraphicsComponent _graphicsComponent;
-    [SerializeField] private SettingsSO _currentSettings = default;
-    [SerializeField] private InputReader _inputReader = default;
-
+    [SerializeField] private SettingsSO _currentSettings;
+    
     [Header("Broadcasting on")]
-    [SerializeField] private VoidEventChannelSO _saveSettingEvent = default;
+    [SerializeField] private VoidEventChannelSO _saveSettingEvent;
 
     public UnityAction Closed;
 
     private void OnEnable()
     {
+        _backButton.Clicked += ClosedScreen;
         _audioComponent._save += SaveAudioSettings;
         _graphicsComponent._save += SaveGraphicsSettings;
-        _inputReader.MenuCloseEvent += CloseScreen;
+        _inputReader.MenuCloseEvent += ClosedScreen;
 
         OpenSetting();
     }
 
     private void OnDisable()
     {
+        _backButton.Clicked -= ClosedScreen;
         _audioComponent._save -= SaveAudioSettings;
-        _inputReader.MenuCloseEvent -= CloseScreen;
+        _graphicsComponent._save -= SaveGraphicsSettings;
+        _inputReader.MenuCloseEvent -= ClosedScreen;
     }
 
-    public void CloseScreen()
+    private void ClosedScreen()
     {
-        Closed.Invoke();
+        Closed?.Invoke();
     }
 
     private void OpenSetting()
     {
         _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
-        _graphicsComponent.Setup();
+        _graphicsComponent.Setup(_currentSettings.ResolutionIndex);
     }
 
-    private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
+    private void SaveAudioSettings(float masterVolume, float musicVolume, float sfxVolume)
     {
-        _currentSettings.SaveAudioSettings(_masterVolume, _musicVolume, _sfxVolume);
+        _currentSettings.SaveAudioSettings(
+        Mathf.Clamp01(masterVolume), 
+        Mathf.Clamp01(musicVolume), 
+        Mathf.Clamp01(sfxVolume));
         _saveSettingEvent.RaiseEvent();
     }
 

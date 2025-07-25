@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2918013327078845174}
   - component: {fileID: 7205033308370475247}
   - component: {fileID: 3457429579596109791}
+  - component: {fileID: 8866801320053359015}
   - component: {fileID: 622263847504840597}
-  - component: {fileID: 2450052519601102559}
   - component: {fileID: 9130621232393807986}
+  - component: {fileID: 4074740373893234848}
   m_Layer: 0
   m_Name: orgel
   m_TagString: Normal
@@ -67,6 +68,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -120,10 +122,10 @@ Rigidbody:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327662754111465746}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Mass: 10
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -162,6 +164,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8866801320053359015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327662754111465746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d91a1b3270c0d845b67f27619d690a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 1
+  m_IdleScriptableActions: []
+  m_WalkScriptableActions: []
+  m_JumpAscendingScriptableActions: []
+  m_JumpDescendingScriptableActions: []
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: 5250ed35e80b6e04cb879451f2832791, type: 2}
+  m_PushScriptableActions: []
 --- !u!114 &622263847504840597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,25 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeline: {fileID: 11400000, guid: 99975352572e0494183a970150b48335, type: 2}
-  _onStartTimeline: {fileID: 11400000, guid: f9e0a26d52c3e7e4aa6c085a41dea893, type: 2}
-  _isEnable: 1
-  _requiredKey: {fileID: 11400000, guid: 92edb4a21a7b1834b9a51b1f0e47f8dd, type: 2}
---- !u!114 &2450052519601102559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2327662754111465746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1d09bf9fb5f7340989411714ab320e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timeline: {fileID: 0}
-  _onStartTimeline: {fileID: 0}
   _isEnable: 0
-  _requiredKey: {fileID: 0}
+  _requiredKey: {fileID: 11400000, guid: 92edb4a21a7b1834b9a51b1f0e47f8dd, type: 2}
 --- !u!114 &9130621232393807986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +212,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 9043883563405134344}
+--- !u!320 &4074740373893234848
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327662754111465746}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 99975352572e0494183a970150b48335, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -9049083824400792911, guid: 99975352572e0494183a970150b48335, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2060041887727568335, guid: 99975352572e0494183a970150b48335, type: 2}
+    value: {fileID: 3457429579596109791}
+  - key: {fileID: 8096607197601901669, guid: 99975352572e0494183a970150b48335, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -7213158103231891795, guid: 99975352572e0494183a970150b48335, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References: []
 --- !u!1 &9043883563405134344
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +298,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

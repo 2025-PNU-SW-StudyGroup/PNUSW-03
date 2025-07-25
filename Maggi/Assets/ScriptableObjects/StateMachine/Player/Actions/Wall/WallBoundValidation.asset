@@ -15,4 +15,4 @@ MonoBehaviour:
   description: "\uBCBD\uC744 \uBC97\uC5B4\uB0AC\uC73C\uBA74 \uBCBD Pull \uD574\uC81C"
   wallLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256

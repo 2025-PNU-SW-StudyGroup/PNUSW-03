@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: DelayedWalkTransition
   m_EditorClassIdentifier: 
   description: 
-  timerLength: 3
-  mode: 1
+  timerLength: 15
+  mode: 2

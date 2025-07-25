@@ -15,62 +15,53 @@ public class PushKeyAction : StateAction
     private PushKeyActionSO _originSO => (PushKeyActionSO)base.OriginSO;
     private InteractionManager _interactionManager;
     private Rigidbody _interactiveObjectRigidbody;
-
-    public override void Awake(StateMachine stateMachine)
+    private InteractiveObject _keyObject;
+    
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
+        _keyObject = interactiveObject;;
     }
 
     public override void OnUpdate() { }
 
     public override void OnStateEnter()
     {
-        // 플레이어가 들고 있는 키와 상호작용할 수 있는 오브젝트 감지
-
-
-        if (_interactionManager.currentInteractionType == InteractionType.None)
+        // 플레이어를 중심으로 구 콜라이더를 생성해 주변에 상호작용 오브젝트가 있는지 체크
+        Collider[] hitColliders = Physics.OverlapSphere(_keyObject.transform.position, 1.0f);
+        foreach (var hitCollider in hitColliders)
         {
-            GameObject currentObject = _interactionManager.currentInteractiveObject;
-
-            Collider[] hitColliders = Physics.OverlapSphere(currentObject.transform.position, 1.0f);
-
-            foreach (var hitCollider in hitColliders)
+            if (hitCollider.TryGetComponent(out InteractionEventListener e) && _keyObject.TryGetComponent(out Key key))
             {
-                if (hitCollider.CompareTag("Normal"))
+                List<InteractionEventListener> listeners = new List<InteractionEventListener>(hitCollider.GetComponents<InteractionEventListener>());
+                
+                foreach (var listener in listeners)
                 {
-                    if (hitCollider.TryGetComponent(out InteractionEventListener e) && currentObject.TryGetComponent(out Key key))
+                    if (listener.RequiredKey != null && listener.RequiredKey.ID == key.GetKeyID())
                     {
-                        List<InteractionEventListener> listeners = new List<InteractionEventListener>(hitCollider.GetComponents<InteractionEventListener>());
-                        Debug.Log(listeners.Count);
-                        foreach (var listener in listeners)
-                        {
-                            if (listener.RequiredKey.ID == key.GetKeyID())
-                            {
-                                Debug.Log("키랑 동일");
-                                listener.IsEnable = true;
-                                InteractWithObject(hitCollider.gameObject, key);
-                                continue;
-                            }
-                            else
-                            {
-                                Debug.Log("키 다름");
-                            }
-                        }
+                        listener.IsEnable = true;
+                        InteractWithObject(hitCollider.gameObject, key);
+                        return;
                     }
                     else
                     {
-                        Debug.LogWarning("There are no Interaction Event Listener or Key _ PushKeyActionSO.cs");
+                        Debug.Log("키를 사용할 수 없습니다.");
                     }
                 }
             }
-
-            // 상호작용 못 하면 그냥 던지는 동작
-            _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
-
-            // Init Position to Player position and Add
-            _interactiveObjectRigidbody.transform.position = _interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.2f;
-            _interactiveObjectRigidbody.velocity = _interactiveObjectRigidbody.transform.forward * _originSO.pushForce + _interactiveObjectRigidbody.transform.up * _originSO.pushHeight;
+            else
+            {
+                Debug.LogWarning("There are no Interaction Event Listener or Key _ PushKeyActionSO.cs");
+            }
         }
+
+        // 상호작용 못 하면 그냥 던지는 동작
+        _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
+
+        // Init Position to Player position and Add
+        _interactiveObjectRigidbody.transform.position = _interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.2f;
+        _interactiveObjectRigidbody.linearVelocity = _interactiveObjectRigidbody.transform.forward * _originSO.pushForce + _interactiveObjectRigidbody.transform.up * _originSO.pushHeight;
+        
     }
 
     private void InteractWithObject(GameObject target, Key key)
@@ -78,7 +69,7 @@ public class PushKeyAction : StateAction
         // 키 삭제
         key.Destroy();
 
-        // 오브젝트 교체, 타임라인도 수정해야함
+        // 숨겨놨던 키 오브젝트를 활성화
         if (target.TryGetComponent(out ActivateObject activeObject))
         {
             activeObject.Activate();
@@ -87,7 +78,6 @@ public class PushKeyAction : StateAction
 
     public override void OnStateExit()
     {
-        _interactionManager.currentInteractionType = InteractionType.None;
-        _interactionManager.currentInteractiveObject = null;
+        _interactionManager.InitCurrentInteraction();
     }
 }

@@ -18,7 +18,7 @@ public class SavePoint : MonoBehaviour
             
             _saveLoadSystem.saveData._locationId = _location.Guid;
 
-            Debug.Log($"ÀúÀå {_saveLoadSystem.saveData._locationId}"); // ³ªÁß¿¡ ÀÌ°Ô UI ¶ç¿öÁÖ´Â°Å·Î ºü²¸¾ß °ÚÁö
+            Debug.Log($"ì €ì¥ {_saveLoadSystem.saveData._locationId}"); // ë‚˜ì¤‘ì— ì´ê²Œ UI ë„ì›Œì£¼ëŠ”ê±°ë¡œ ë¹ ê»´ì•¼ ê² ì§€
 
             _pointStorage.lastPointTaken = _savePoint;
             _saveLoadSystem.SaveDataToDisk();

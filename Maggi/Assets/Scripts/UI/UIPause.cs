@@ -5,21 +5,23 @@ using UnityEngine.Events;
 
 public class UIPause : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader = default;
-    [SerializeField] private UIGenericButton _restartButton = default;
-    [SerializeField] private UIGenericButton _settingsButton = default;
-    [SerializeField] private UIGenericButton _controlButton = default;
-    [SerializeField] private UIGenericButton _backToMenuButton = default;
-    [SerializeField] private UIGenericButton _resumeButton = default;
+    [SerializeField] private InputReader _inputReader;
+    
+    [Header("Pause UI")]
+    [SerializeField] private UIGenericButton _restartButton;
+    [SerializeField] private UIGenericButton _settingsButton;
+    [SerializeField] private UIGenericButton _controlButton;
+    [SerializeField] private UIGenericButton _backToMenuButton;
+    [SerializeField] private UIGenericButton _resumeButton;
 
     [Header("Broadcasting on")]
-    [SerializeField] private BoolEventChannelSO _onPauseOpened = default;
+    [SerializeField] private BoolEventChannelSO _onPauseOpened;
 
-    public event UnityAction Restarted = default;
-    public event UnityAction SettingScreenOpened = default;
-    public event UnityAction ControlScreenOpened = default;    
-    public event UnityAction Resumed = default;
-    public event UnityAction BackToMainRequested = default;
+    public event UnityAction Restarted;
+    public event UnityAction SettingScreenOpened;
+    public event UnityAction ControlScreenOpened;    
+    public event UnityAction Resumed;
+    public event UnityAction BackToMainRequested;
 
     private void OnEnable()
     {
@@ -48,31 +50,31 @@ public class UIPause : MonoBehaviour
 
     private void Restart()
     {
-        Restarted.Invoke();
+        Restarted?.Invoke();
     }
 
     private void Resume()
     {
-        Resumed.Invoke();
+        Resumed?.Invoke();
     }
 
     private void OpenSettingScreen()
     {
-        SettingScreenOpened.Invoke();
+        SettingScreenOpened?.Invoke();
     }
 
     private void OpenControlScreen()
     {
-        ControlScreenOpened.Invoke();
+        ControlScreenOpened?.Invoke();
     }
 
     private void BackToMainMenuConfirmation()
     {
-        BackToMainRequested.Invoke();
+        BackToMainRequested?.Invoke();
     }
 
     public void CloseScreen()
     {
-        Resumed.Invoke();
+        Resumed?.Invoke();
     }
 }

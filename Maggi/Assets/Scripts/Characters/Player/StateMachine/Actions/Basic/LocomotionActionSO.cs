@@ -31,112 +31,102 @@ public class PullAction : StateAction
 
     public override void OnStateEnter()
     {
-        if (!_interactionManager.currentInteractiveObject.TryGetComponent(out _interactiveObjectScript))
+        if (!_interactionManager.currentInteractiveObject ||
+            !_interactionManager.currentInteractiveObject.TryGetComponent(out _interactiveObjectScript) || 
+            _interactiveObjectScript == null)
+        {
             return;
+        }
         
-        //_interactiveObjectScript = _interactionManager.currentInteractiveObject.GetComponent<InteractiveObject>();
         _interactiveObjectScript.Init(_owner);
 
-        if (_interactiveObjectScript != null)
+        switch (_originSO.state)
         {
-            switch (_originSO.state)
-            {
-            case Locomotion.Idle:
-                _interactiveObjectScript.OnIdleStateEnter();
-                break;
-            case Locomotion.Walk:
-                _interactiveObjectScript.OnWalkStateEnter();
-                break;
-            case Locomotion.JumpAscending:
-                _interactiveObjectScript.OnJumpAscendingStateEnter();
-                break;
-            case Locomotion.JumpDescending:
-                _interactiveObjectScript.OnJumpDescendingStateEnter();
-                break;
-            case Locomotion.Pull:
-                _interactiveObjectScript.OnPullStateEnter();
-                break;
-            case Locomotion.Push:
-                _interactiveObjectScript.OnPushStateEnter();
-                break;
-            default:
-                Debug.Log("State not handled");
-                break;
-            }
-        }
-        else
-        {
-            Debug.Log("There is no InteractiveObject Scripts");
+        case Locomotion.Idle:
+            _interactiveObjectScript.OnIdleStateEnter();
+            break;
+        case Locomotion.Walk:
+            _interactiveObjectScript.OnWalkStateEnter();
+            break;
+        case Locomotion.JumpAscending:
+            _interactiveObjectScript.OnJumpAscendingStateEnter();
+            break;
+        case Locomotion.JumpDescending:
+            _interactiveObjectScript.OnJumpDescendingStateEnter();
+            break;
+        case Locomotion.Pull:
+            _interactiveObjectScript.OnPullStateEnter();
+            break;
+        case Locomotion.Push:
+            _interactiveObjectScript.OnPushStateEnter();
+            break;
+        default:
+            Debug.Log("State not handled");
+            break;
         }
     }
 
     public override void OnUpdate()
     {
-        if (_interactiveObjectScript != null)
+        if (!_interactionManager.currentInteractiveObject ||
+            !_interactiveObjectScript)
+            return;
+        
+        switch (_originSO.state)
         {
-            switch (_originSO.state)
-            {
-            case Locomotion.Idle:
-                _interactiveObjectScript.OnIdleUpdate();
-                break;
-            case Locomotion.Walk:
-                _interactiveObjectScript.OnWalkUpdate();
-                break;
-            case Locomotion.JumpAscending:
-                _interactiveObjectScript.OnJumpAscendingUpdate();
-                break;
-            case Locomotion.JumpDescending:
-                _interactiveObjectScript.OnJumpDescendingUpdate();
-                break;
-            case Locomotion.Pull:
-                _interactiveObjectScript.OnPullUpdate();
-                break;
-            case Locomotion.Push:
-                _interactiveObjectScript.OnPushUpdate();
-                break;
-            default:
-                Debug.Log("State not handled");
-                break;
-            }
-        }
-        else
-        {
-            Debug.Log("There is no InteractiveObject Scripts");
+        case Locomotion.Idle:
+            _interactiveObjectScript.OnIdleUpdate();
+            break;
+        case Locomotion.Walk:
+            _interactiveObjectScript.OnWalkUpdate();
+            break;
+        case Locomotion.JumpAscending:
+            _interactiveObjectScript.OnJumpAscendingUpdate();
+            break;
+        case Locomotion.JumpDescending:
+            _interactiveObjectScript.OnJumpDescendingUpdate();
+            break;
+        case Locomotion.Pull:
+            _interactiveObjectScript.OnPullUpdate();
+            break;
+        case Locomotion.Push:
+            _interactiveObjectScript.OnPushUpdate();
+            break;
+        default:
+            Debug.Log("State not handled");
+            break;
         }
     }
 
     public override void OnStateExit()
     {
-        if (_interactiveObjectScript != null)
+        if (!_interactionManager.currentInteractiveObject ||
+            !_interactiveObjectScript)
+            return;
+        
+        switch (_originSO.state)
         {
-            switch (_originSO.state)
-            {
-            case Locomotion.Idle:
-                _interactiveObjectScript.OnIdleStateExit();
-                break;
-            case Locomotion.Walk:
-                _interactiveObjectScript.OnWalkStateExit();
-                break;
-            case Locomotion.JumpAscending:
-                _interactiveObjectScript.OnJumpAscendingStateExit();
-                break;
-            case Locomotion.JumpDescending:
-                _interactiveObjectScript.OnJumpDescendingStateExit();
-                break;
-            case Locomotion.Pull:
-                _interactiveObjectScript.OnPullStateExit();
-                break;
-            case Locomotion.Push:
-                _interactiveObjectScript.OnPushStateExit();
-                break;
-            default:
-                Debug.Log("State not handled");
-                break;
-            }
-        }
-        else
-        {
-            Debug.Log("There is no InteractiveObject Scripts");
+        case Locomotion.Idle:
+            _interactiveObjectScript.OnIdleStateExit();
+            break;
+        case Locomotion.Walk:
+            _interactiveObjectScript.OnWalkStateExit();
+            break;
+        case Locomotion.JumpAscending:
+            _interactiveObjectScript.OnJumpAscendingStateExit();
+            break;
+        case Locomotion.JumpDescending:
+            _interactiveObjectScript.OnJumpDescendingStateExit();
+            break;
+        case Locomotion.Pull:
+            _interactiveObjectScript.OnPullStateExit();
+            break;
+        case Locomotion.Push:
+            _interactiveObjectScript.OnPushStateExit();
+            break;
+        default:
+            Debug.Log("State not handled");
+            break;
         }
     }
 }

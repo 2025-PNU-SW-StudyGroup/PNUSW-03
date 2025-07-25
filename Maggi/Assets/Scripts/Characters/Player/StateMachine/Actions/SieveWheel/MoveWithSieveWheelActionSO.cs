@@ -27,11 +27,18 @@ public class MoveWithSieveWheelAction : StateAction
     public override void OnStateEnter()
     {
         _interactionRigid = _interactiveObject.GetComponent<Rigidbody>();
+        _interactionRigid.isKinematic = false;
     }
 
     public override void OnUpdate()
     {
-        _interactionRigid.velocity = _interactiveObject.transform.right * _player.movementInput.x * _originSO.WheelSpeed;
+        _interactionRigid.linearVelocity = _interactiveObject.transform.right * (_player.inputVector.x * _originSO.WheelSpeed);
+        // 캔 안에 플레이어가 들어가게 플레이어 위치 조정
         _transform.position = _interactiveObject.transform.position - _interactiveObject.transform.up * 0.3f;
+    }
+
+    public override void OnStateExit()
+    {
+        _interactionRigid.isKinematic = true;
     }
 }

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: NextAreaMove
   m_EditorClassIdentifier: 
   description: "Nav mesh agent\uB97C current area\uB85C \uBCF4\uB0B8\uB2E4. \uC774\uB97C
-    3\uCD08\uB9C8\uB2E4 \uB2E4\uC74C area\uB85C \uC774\uB3D9\uC2DC\uD0A8\uB2E4.\u3163"
+    3\uCD08\uB9C8\uB2E4 \uB2E4\uC74C area\uB85C \uC774\uB3D9\uC2DC\uD0A8\uB2E4."
+  moveSpeed: 1.2
+  rotationSpeed: 0.5

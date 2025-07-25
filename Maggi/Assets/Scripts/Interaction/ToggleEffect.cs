@@ -12,7 +12,7 @@ public class ToggleEffect : MonoBehaviour
     private Renderer _renderer;
     private bool _isSelected;
 
-    void Start()
+    private void Start()
     {
         if (_isMeshInChild)
             _renderer = transform.GetChild(0).GetComponent<Renderer>();
@@ -49,42 +49,22 @@ public class ToggleEffect : MonoBehaviour
             _renderer.material = _originalMaterial;
         }
     }
-    /*
-    public void HoverMaterial(bool isHover)
+
+    private void OnMouseEnter()
     {
         if (_renderer == null)
         {
             Debug.LogWarning("There is no render _ ToggleEffect.cs");
             return;
         }
-
-        if (isHover)
+        if (!_isSelected) 
         {
             _copiedMaterial.SetFloat("_scale", 1.5f);
             _renderer.material = _copiedMaterial;
         }
-        else
-        {
-            _renderer.material = _originalMaterial;
-        }
-    }*/
-
-    void OnMouseEnter()
-    {
-        //Debug.Log("OnMouseEnter");
-        if (_renderer == null)
-        {
-            Debug.LogWarning("There is no render _ ToggleEffect.cs");
-            return;
-        }
-        if (!_isSelected) {
-            _copiedMaterial.SetFloat("_scale", 1.5f);
-            _renderer.material = _copiedMaterial;
-        }
-        
     }
 
-    void OnMouseExit()
+    private void OnMouseExit()
     {
         if (_renderer == null)
         {

@@ -49,12 +49,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 682c81300a2ac6947991e4c9c70fced3, type: 3}
+      propertyPath: m_ReceiveGI
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 682c81300a2ac6947991e4c9c70fced3, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 5f25acbf5d8ef0e4c96e2b06d5c1050f, type: 2}
     - target: {fileID: 919132149155446097, guid: 682c81300a2ac6947991e4c9c70fced3, type: 3}
       propertyPath: m_Name
       value: block_obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 682c81300a2ac6947991e4c9c70fced3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

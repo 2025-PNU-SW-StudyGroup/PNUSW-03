@@ -25,7 +25,7 @@ public class HorizontalMoveAction : StateAction
 
     public override void OnUpdate()
     {
-        _player.movementVector.x = _player.movementInput.x * _originSO.speed;
-        _player.movementVector.z = _player.movementInput.z * _originSO.speed;
+        _player.movementVector.x = _player.movementInput.x * _originSO.speed * (_player.runInput ? Player.RUN_SPEED_MULTIPLIER : 1);
+        _player.movementVector.z = _player.movementInput.z * _originSO.speed * (_player.runInput ? Player.RUN_SPEED_MULTIPLIER : 1);
     }
 }

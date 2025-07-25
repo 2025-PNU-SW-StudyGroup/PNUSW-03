@@ -62,7 +62,7 @@ public class StartGame : MonoBehaviour
         var locationGuid = _saveLoadSystem.saveData._locationId;
         var asyncOperationHandle = Addressables.LoadAssetAsync<LocationSO>(locationGuid);
 
-        Debug.Log($"pawn shopÀÇ GUID = {_locationsToLoad.Guid}, ÀúÀåµÈ GUID = {locationGuid}");
+        Debug.Log($"pawn shopì˜ GUID = {_locationsToLoad.Guid}, ì €ì¥ëœ GUID = {locationGuid}");
 
         yield return asyncOperationHandle;
 

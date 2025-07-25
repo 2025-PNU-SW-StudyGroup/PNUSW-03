@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,12 +15,12 @@ public enum PopupType
 
 public class UIPopup : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _titleText = default;
-    [SerializeField] private TextMeshProUGUI _descriptionText = default;
-    [SerializeField] private Button _buttonClose = default;
-    [SerializeField] private UIGenericButton _popupButton1 = default;
-    [SerializeField] private UIGenericButton _popupButton2 = default;
-    [SerializeField] private InputReader _inputReader = default;
+    [SerializeField] private TextMeshProUGUI _titleText;
+    [SerializeField] private TextMeshProUGUI _descriptionText;
+    [SerializeField] private Button _buttonClose ;
+    [SerializeField] private UIGenericButton _popupButton1;
+    [SerializeField] private UIGenericButton _popupButton2;
+    [SerializeField] private InputReader _inputReader;
 
     [SerializeField] private PopupType _actualType;
 
@@ -38,32 +38,36 @@ public class UIPopup : MonoBehaviour
         case PopupType.Quit:
             isConfirmation = true;
             _titleText.text = "EXIT";
-            _descriptionText.text = "Á¤¸» °ÔÀÓÀ» ³ª°¡½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ì •ë§ ê²Œì„ì„ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.NewGame:
             isConfirmation = true;
             _titleText.text = "New";
-            _descriptionText.text = "»õ·Î¿î °ÔÀÓÀ» ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ìƒˆë¡œìš´ ê²Œì„ì„ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.BackToMenu:
             isConfirmation = true;
             _titleText.text = "Main";
-            _descriptionText.text = "¸ŞÀÎ ¸Ş´º·Î ³ª°¡½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ë©”ì¸ ë©”ë‰´ë¡œ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.DonePrototype:
             isConfirmation = false;
-            _titleText.text = "Demo";
-            _descriptionText.text = "¿©±â±îÁö µ¥¸ğ ÇÃ·¹ÀÌ¿´½À´Ï´Ù.";
-            _popupButton1.SetButton("°¨»çÇÕ´Ï´Ù", true);
+            _titleText.text = "";
+            _descriptionText.text = 
+                "ë§ˆê¸°ì™€ í•¨ê»˜ ì—¬ê¸°ê¹Œì§€ ë‹¬ë ¤ì˜¤ì‹ \n" +
+                "ì—¬ëŸ¬ë¶„, ì§„ì‹¬ìœ¼ë¡œ ê°ì‚¬ë“œë¦½ë‹ˆë‹¤\n" +
+                "ë§ˆê¸°ì˜ ì—¬ì •ì€ ì•„ì§ ëë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤\n" +
+                "ë§ˆê¸°ì™€ í•¨ê»˜í•˜ëŠ” ë‹¤ìŒ ëª¨í—˜, ê¸°ëŒ€í•´ ì£¼ì„¸ìš”.";
+            _popupButton1.SetButton("ê°ì‚¬í•©ë‹ˆë‹¤", true);
             hasExitButton = false;
             break;
         default:

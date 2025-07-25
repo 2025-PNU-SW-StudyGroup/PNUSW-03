@@ -7,7 +7,7 @@ public class NoInteractionConditionSO : StateConditionSO<NoInteractionCondition>
 
 public class NoInteractionCondition : Condition
 {
-    private InteractionManager _interactionManager = default;
+    private InteractionManager _interactionManager;
 
     public override void Awake(StateMachine stateMachine)
     {
@@ -16,7 +16,8 @@ public class NoInteractionCondition : Condition
 	
 	protected override bool Statement()
 	{
-        if (_interactionManager.currentInteractionType == InteractionType.None) 
+        if (_interactionManager.currentInteractionType == InteractionType.None
+            && _interactionManager.currentInteractiveObject == null) 
             return true;
         return false;
 	}

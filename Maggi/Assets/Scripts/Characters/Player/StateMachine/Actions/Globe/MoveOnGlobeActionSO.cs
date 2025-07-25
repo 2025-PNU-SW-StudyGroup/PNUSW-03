@@ -100,8 +100,8 @@ public class MoveOnGlobeAction : StateAction
     public override void OnUpdate()
     {
         // 입력
-        float xInput = _player.movementInput.x; // 좌/우
-        float zInput = _player.movementInput.z; // 상/하
+        float xInput = _player.inputVector.x; // 좌/우
+        float zInput = _player.inputVector.y; // 상/하
 
         // ─────────────────────────────────────────────
         // 1) 세로각 θ 업데이트
@@ -180,7 +180,7 @@ public class MoveOnGlobeAction : StateAction
             _sphereUp      * (R * Mathf.Cos(_theta));
 
         Vector3 newPosition = _sphereCenter + cartesian;
-        _transform.position = newPosition;
+        _transform.position = newPosition + _transform.up * 0.2f;
 
         // ─────────────────────────────────────────────
         // 4) 회전: Up = 구 표면 노멀
@@ -208,7 +208,17 @@ public class MoveOnGlobeAction : StateAction
                 _sphereUp      * (R * Mathf.Cos(testTheta));
 
             Vector3 testPosition = _sphereCenter + testCartesian;
-            Vector3 moveDir = (testPosition - newPosition).normalized; // 예상 이동방향
+            
+            
+            // rawDirection을 구하고 0벡터인지 검사
+            Vector3 rawDir = testPosition - newPosition;
+            if (rawDir.sqrMagnitude < Mathf.Epsilon)
+            {
+                // 이동 방향이 완전히 없으면 이전 forward나 기본값으로 대체
+                rawDir = _transform.forward;
+            }
+
+            Vector3 moveDir = rawDir.normalized; // 예상 이동방향
 
             // (기본) "Z 축이 이동 방향"이 되도록
             Quaternion targetRot = Quaternion.LookRotation(moveDir, newNormal);
@@ -219,12 +229,10 @@ public class MoveOnGlobeAction : StateAction
                 targetRot *= Quaternion.Euler(0, -90f, 0);
             }
 
-            //_transform.rotation = targetRot;
-
-            // 3) slerp
+            // slerp로 부드럽게 회전
             Quaternion finalRot = Quaternion.Slerp(_transform.rotation, targetRot, _originSO.rotationSpeed * Time.deltaTime);
 
-            // 4) 적용 (이 시점에서 transform.up도 newNormal과 일치)
+            // 실제 회전에 적용 (이 시점에서 transform.up도 newNormal과 일치)
             _transform.rotation = finalRot;
         }
     }

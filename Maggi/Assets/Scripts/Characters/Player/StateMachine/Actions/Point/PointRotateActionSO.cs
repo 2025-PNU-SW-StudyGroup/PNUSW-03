@@ -5,7 +5,6 @@ using Maggi.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "PointRotateAction", menuName = "State Machines/Actions/Point Rotate Action")]
 public class PointRotateActionSO : StateActionSO<PointRotateAction>
 {
-    public LayerMask PointLayerMask;
     public float rotationSpeed = 2.0f;
 }
 
@@ -28,7 +27,7 @@ public class PointRotateAction : StateAction
     {
         _transform.RotateAround(_interactiveObject.transform.position,
                                 _interactiveObject.transform.right,
-                                _player.movementInput.x * _originSO.rotationSpeed);
+                                _player.inputVector.x * _originSO.rotationSpeed);
     }
 }
 

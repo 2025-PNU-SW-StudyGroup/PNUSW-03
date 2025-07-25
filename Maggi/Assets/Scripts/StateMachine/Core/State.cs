@@ -57,6 +57,12 @@ namespace Maggi.StateMachine
                 _actions[i].OnFixedUpdate();
         }
 
+        public void OnLateUpdate()
+        {
+            for (int i = 0; i < _actions.Length; i++)
+                _actions[i].OnLateUpdate();
+        }
+
         public bool TryGetTransition(out State state)
         {
             state = null;

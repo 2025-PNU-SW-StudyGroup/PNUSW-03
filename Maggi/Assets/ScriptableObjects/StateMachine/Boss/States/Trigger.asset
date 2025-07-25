@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Trigger
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: 05d21070e56691e4499e5ad2b56fa951, type: 2}
+  - {fileID: 11400000, guid: 6a375430d9b137940bb0d036efc23a1f, type: 2}
+  - {fileID: 11400000, guid: 017af6390360b5e42b9a1f75aba35f59, type: 2}
+  - {fileID: 11400000, guid: 45953b551fc728f49a1722abab1bb376, type: 2}

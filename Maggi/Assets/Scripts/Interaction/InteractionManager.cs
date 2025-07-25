@@ -14,9 +14,13 @@ public class InteractionManager : MonoBehaviour
     [ReadOnly] public GameObject currentInteractiveObject;
     [ReadOnly] public bool pullInput = false;
     [ReadOnly] public bool pushInput = false;
-
-    private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); // To store the objects we the player could potentially interact with
-
+    
+    // To store the objects we the player could potentially interact with
+    private LinkedList<Interaction> _potentialInteractions = new(); 
+    // Dictionary로 중복 삽입 방지 & 빠른 제거
+    private Dictionary<GameObject, LinkedListNode<Interaction>> 
+        _interactionLookup = new Dictionary<GameObject, LinkedListNode<Interaction>>();
+    
     private void OnEnable()
     {
         _inputReader.PullEvent += OnPullInitiated;
@@ -33,13 +37,20 @@ public class InteractionManager : MonoBehaviour
         _inputReader.PushCancelEvent -= OnPushCancelInitiated;
     }
 
+    public void InitCurrentInteraction()
+    {
+        OnTriggerChangeDetected(false, currentInteractiveObject.gameObject);
+        currentInteractiveObject = null;
+        currentInteractionType = InteractionType.None;
+    }
+
     private void OnPullInitiated()
     {
         pullInput = true;
 
         if (_potentialInteractions.Count == 0 ) return;
         if (currentInteractiveObject != null) return;
-
+        
         currentInteractionType = _potentialInteractions.First.Value.type;
         currentInteractiveObject = _potentialInteractions.First.Value.interactiveObject;
     }
@@ -66,34 +77,56 @@ public class InteractionManager : MonoBehaviour
         else
             RemovePotentialInteraction(obj);
     }
-
+    
     private void AddPotentialInteraction(GameObject obj)
     {
-        Interaction newPotentialInteraction = new Interaction(InteractionType.None, obj);
+        if (!obj.TryGetComponent(out InteractiveObject io) || io.m_Type == InteractionType.None)
+            return;
 
-        // Zone Trigger ������ �ִ� ������Ʈ�� ������
-        if (obj.TryGetComponent(out InteractiveObject io))
-        {
-            newPotentialInteraction.type = io.m_Type;
-        }
+        // 이미 Look-up에 존재하면 더 이상 추가하지 않음
+        if (_interactionLookup.ContainsKey(obj))
+            return;
 
-        if (newPotentialInteraction.type != InteractionType.None)
-        {
-            _potentialInteractions.AddFirst(newPotentialInteraction);
-        }
+        // 새 Interaction 생성하여 LinkedList 앞에 추가
+        var newInteraction = new Interaction(io.m_Type, obj);
+        var node = _potentialInteractions.AddFirst(newInteraction);
+
+        // Look-up dictionary에 노드 저장
+        _interactionLookup[obj] = node;
     }
 
     private void RemovePotentialInteraction(GameObject obj)
     {
-        LinkedListNode<Interaction> currentNode = _potentialInteractions.First;
-        while (currentNode != null)
+        // Look-up에서 노드를 바로 꺼내기
+        if (_interactionLookup.TryGetValue(obj, out var node))
         {
-            if (currentNode.Value.interactiveObject == obj)
-            {
-                _potentialInteractions.Remove(currentNode);
-                break;
-            }
-            currentNode = currentNode.Next;
+            // LinkedList에서 제거
+            _potentialInteractions.Remove(node);
+            // Look up dictionary에서도 키 제거
+            _interactionLookup.Remove(obj);
         }
     }
+
+    // private void AddPotentialInteraction(GameObject obj)
+    // {
+    //     // Zone Trigger 범위에 있는 오브젝트를 가져옴
+    //     if (obj.TryGetComponent(out InteractiveObject io) && io.m_Type != InteractionType.None)
+    //     {
+    //         _potentialInteractions.AddFirst(new Interaction(io.m_Type, obj));
+    //     }
+    // }
+    //
+    // private void RemovePotentialInteraction(GameObject obj)
+    // {
+    //     LinkedListNode<Interaction> currentNode = _potentialInteractions.First;
+    //     while (currentNode != null)
+    //     {
+    //         if (currentNode.Value.interactiveObject == obj)
+    //         {
+    //             _potentialInteractions.Remove(currentNode);
+    //             break;
+    //         }
+    //         currentNode = currentNode.Next;
+    //     }
+    // }
 }

@@ -11,6 +11,7 @@ namespace Maggi.StateMachine
 
 		public abstract void OnUpdate();
 		public virtual void OnFixedUpdate() { }
+        public virtual void OnLateUpdate() { }
 		public virtual void Awake(StateMachine stateMachine) { }
         public virtual void Awake(InteractiveObject interactiveObject, GameObject owner) { }
         public virtual void OnStateEnter() { }

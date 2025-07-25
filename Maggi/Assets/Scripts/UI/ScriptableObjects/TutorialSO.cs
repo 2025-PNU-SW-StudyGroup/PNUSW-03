@@ -6,5 +6,5 @@ using UnityEngine.UI;
 public class TutorialSO : DescriptionBaseSO
 {
     [HideInInspector] public Image Image;
-    [HideInInspector] public TextMeshProUGUI Text;
+    [HideInInspector] public TextMeshProUGUI Tmp;
 }

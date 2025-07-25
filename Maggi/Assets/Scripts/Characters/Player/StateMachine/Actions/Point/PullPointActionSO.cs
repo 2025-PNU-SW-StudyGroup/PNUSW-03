@@ -4,15 +4,10 @@ using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "PullPointAction", menuName = "State Machines/Actions/Pull Point Action")]
 
-public class PullPointActionSO : StateActionSO<PullPointAction>
-{
-    public LayerMask PointLayerMask;
-}
+public class PullPointActionSO : StateActionSO<PullPointAction> { }
 
 public class PullPointAction : StateAction
 {
-	protected new PullPointActionSO _originSO => (PullPointActionSO)base.OriginSO;
-
     private Transform _transform;
 	private InteractionManager _interactionManager;
 

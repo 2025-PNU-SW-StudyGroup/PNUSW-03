@@ -11,39 +11,45 @@ public class UIMainMenu : MonoBehaviour
 
     public UnityAction NewGameButtonAction;
     public UnityAction ContinueButtonAction;
+    public UnityAction ControlButtonAction;
     public UnityAction SettingsButtonAction;
     public UnityAction ExitButtonAction;
 
     public void SetMenuScreen(bool hasSaveData)
     {
         _continueButton.gameObject.SetActive(hasSaveData);
-        if (hasSaveData)
-        {
-            _continueButton.Select();
-        }
-        else
-        {
-            _newGameButton.Select();
-        }
+        // if (hasSaveData)
+        // {
+        //     _continueButton.Select();
+        // }
+        // else
+        // {
+        //     _newGameButton.Select();
+        // }
     }
 
     public void NewGameButton()
     {
-        NewGameButtonAction.Invoke();
+        NewGameButtonAction?.Invoke();
     }
 
     public void ContinueButton()
     {
-        ContinueButtonAction.Invoke();
+        ContinueButtonAction?.Invoke();
+    }
+
+    public void ControlButton()
+    {
+        ControlButtonAction?.Invoke();
     }
 
     public void SettingsButton()
     {
-        SettingsButtonAction.Invoke();
+        SettingsButtonAction?.Invoke();
     }
 
     public void ExitButton()
     {
-        ExitButtonAction.Invoke();
+        ExitButtonAction?.Invoke();
     }
 }
